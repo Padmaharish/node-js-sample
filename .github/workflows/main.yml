@@ -17,10 +17,8 @@ jobs:
           node-version: 18
       - name: Build
         run: npm install
-        working-directory: node-js-sample
       - name: Tests
         run: npm run || echo "test is running "
-        working-directory: node-js-sample
   Docker-Push:
     runs-on: ubuntu-latest
     steps:
@@ -32,8 +30,8 @@ jobs:
       - name: build image
         uses: docker/build-push-action@v5
         with: 
-          context: node-js-sample
-          file: node-js-sample/Dockerfile
+          context: ./node-js-sample
+          file: ./node-js-sample/Dockerfile
           push: True
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/node-js-sample-image:latest
           

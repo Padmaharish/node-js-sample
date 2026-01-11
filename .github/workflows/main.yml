@@ -32,7 +32,8 @@ jobs:
       - name: build image
         uses: docker/build-push-action@v5
         with: 
-          context: node-js-sample
+          context: .
+          file: node-js-sample/Dockerfile
           push: True
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/node-js-sample-image:latest
           

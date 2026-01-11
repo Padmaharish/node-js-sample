@@ -33,7 +33,7 @@ jobs:
         uses: docker/build-push-action@v5
         with: 
           context: .
-          file: node-js-sample/Dockerfile
+          file: FirstProject-V1/node-js-sample/Dockerfile
           push: True
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/node-js-sample-image:latest
           

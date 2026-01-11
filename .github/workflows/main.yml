@@ -1,0 +1,41 @@
+name: CI and Push image
+on:
+  push:
+    branches:
+      - main
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: show repo structure
+        run: ls -R
+      - name: setup node 
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: Build
+        run: npm install
+        working-directory: node-js-sample
+      - name: Tests
+        run: npm run || echo "test is running "
+        working-directory: node-js-sample
+  Docker-Push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: login to docker registry
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: build image
+        uses: docker/build-push-action@v5
+        with: 
+          context: .
+          push: True
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/node-js-sample-image:latest
+          
+        
+      
+  

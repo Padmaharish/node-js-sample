@@ -22,6 +22,8 @@ jobs:
   Docker-Push:
     runs-on: ubuntu-latest
     steps:
+      - name: Chcekout code
+        uses: actions/checkout@v4
       - name: login to docker registry
         uses: docker/login-action@v3
         with:

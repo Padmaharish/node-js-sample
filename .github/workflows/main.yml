@@ -22,7 +22,7 @@ jobs:
         run: npm run || echo "test is running "
         working-directory: node-js-sample
   Docker-Push:
-    runs-on: ununtu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: login to docker registry
         uses: docker/login-action@v3
